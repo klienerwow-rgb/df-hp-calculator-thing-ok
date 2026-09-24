@@ -4,20 +4,20 @@ function calculate() {
     var dfp = Number(document.getElementById("dfp").value)
     var damage = Number(document.getElementById("damage").value)
 
-    var multiplier = 1 - dfp / 100
-    var taken = (damage - df) * multiplier
+    var dmg2 = damage - df
+    var dmg3 = dmg2 - (dmg2 * dfp / 100)
 
     var hits = Infinity
     var ehp = Infinity
 
-    if (damage > 0 && hp > 0 && taken > 0) {
-        hits = Math.ceil(hp / taken)
-        ehp = hp * damage / taken
+    if (damage > 0 && hp > 0 && dmg3 > 0) {
+        hits = Math.ceil(hp / dmg3)
+        ehp = hp * damage / dmg3
     }
 
     document.getElementById("output").innerHTML =
-        "Damage Taken: " + format(taken) + "<br>" +
-        "Damage Multiplier: " + format(multiplier) + "x<br>" +
+        "Damage Taken: " + format(dmg3) + "<br>" +
+        "Damage After DF: " + format(dmg2) + "<br>" +
         "Hits To Kill: " + format(hits) + "<br>" +
         "Effective HP: " + format(ehp)
 }

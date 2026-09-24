@@ -10,7 +10,7 @@ function calculate() {
     var hits = Infinity
     var ehp = Infinity
 
-    if (taken > 0 && damage > 0 && hp > 0) {
+    if (damage > 0 && hp > 0 && taken > 0) {
         hits = Math.ceil(hp / taken)
         ehp = hp * damage / taken
     }

@@ -4,45 +4,15 @@ function calculate() {
     var dfp = Number(document.getElementById("dfp").value)
     var damage = Number(document.getElementById("damage").value)
 
-    var damageBeforePercent = damage + df
     var multiplier = 1 - dfp / 100
-    var taken = damageBeforePercent * multiplier
+    var taken = (damage + df) * multiplier
 
     var hits = Infinity
     var ehp = Infinity
 
     if (taken > 0 && damage > 0 && hp > 0) {
         hits = Math.ceil(hp / taken)
-        ehp = hp / (taken / damage)
-    }
-
-    document.getElementById("output").innerHTML =
-        "Damage Taken: " + format(taken) + "<br>" +
-        "Damage Multiplier: " + format(multiplier) + "x<br>" +
-        "Hits To Kill: " + format(hits) + "<br>" +
-        "Effective HP: " + format(ehp)
-}
-
-function format(value) {
-    if (!Number.isFinite(value)) {
-        return "∞"
-    }
-function calculate() {
-    var hp = Number(document.getElementById("hp").value)
-    var df = Number(document.getElementById("df").value)
-    var dfp = Number(document.getElementById("dfp").value)
-    var damage = Number(document.getElementById("damage").value)
-
-    var damageBeforePercent = damage + df
-    var multiplier = 1 - dfp / 100
-    var taken = damageBeforePercent * multiplier
-
-    var hits = Infinity
-    var ehp = Infinity
-
-    if (taken > 0 && damage > 0 && hp > 0) {
-        hits = Math.ceil(hp / taken)
-        ehp = hp / (taken / damage)
+        ehp = hp * damage / taken
     }
 
     document.getElementById("output").innerHTML =
@@ -61,3 +31,10 @@ function format(value) {
         maximumFractionDigits: 10
     })
 }
+
+document.getElementById("hp").addEventListener("input", calculate)
+document.getElementById("df").addEventListener("input", calculate)
+document.getElementById("dfp").addEventListener("input", calculate)
+document.getElementById("damage").addEventListener("input", calculate)
+
+calculate()

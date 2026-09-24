@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DF Calculator</title>
+    <meta charset="UTF-8">
+    <title>DF / HP Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>DF Calculator</h1>
+    <h2>DF / HP Calculator</h2>
 
-    <div class="inputs">
-        <label>HP</label>
-        <input id="hp" type="number" value="1000">
+    <p>HP</p>
+    <input id="hp" type="number" step="any">
 
-        <label>DF</label>
-        <input id="df" type="number" value="0">
+    <p>DF</p>
+    <input id="df" type="number" step="any">
 
-        <label>DF%</label>
-        <input id="dfpercent" type="number" value="0">
+    <p>DF%</p>
+    <input id="dfp" type="number" step="any">
 
-        <label>Incoming Damage</label>
-        <input id="damage" type="number" value="100">
-    </div>
+    <p>Damage</p>
+    <input id="damage" type="number" step="any">
 
-    <div class="results">
-        <p>Damage Taken: <span id="finaldamage">0</span></p>
-        <p>Damage Multiplier: <span id="multiplier">1x</span></p>
-        <p>Hits To Kill: <span id="hits">0</span></p>
-        <p>Effective HP: <span id="ehp">0</span></p>
-    </div>
+    <br><br>
 
-    <p class="formula">
-        Damage = (Incoming Damage - DF) × (1 - DF% / 100)
-    </p>
+    <button onclick="calculate()">Calculate</button>
 
-    <script src="script.js"></script>
+    <div id="output"></div>
+
+    <script src="./script.js"></script>
 </body>
 </html>

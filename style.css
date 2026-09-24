@@ -1,46 +1,28 @@
 body {
-    margin: 30px;
-    background: #111;
+    background: #171717;
     color: #ddd;
-    font-family: Arial, sans-serif;
-}
-
-h1 {
-    font-size: 24px;
-}
-
-.inputs {
-    width: 300px;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
+    font-family: Arial;
+    margin: 40px;
 }
 
 input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    box-sizing: border-box;
+    display: block;
+    width: 250px;
+    padding: 6px;
     background: #222;
-    border: 1px solid #444;
     color: white;
+    border: 1px solid #555;
 }
 
-.results {
+button {
+    padding: 7px 12px;
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+#output {
     margin-top: 25px;
-}
-
-.results p {
-    margin: 8px 0;
-}
-
-.results span {
-    color: white;
-}
-
-.formula {
-    margin-top: 30px;
-    color: #888;
+    line-height: 1.8;
 }

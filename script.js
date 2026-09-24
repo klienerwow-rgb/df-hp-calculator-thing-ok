@@ -6,13 +6,21 @@ function calculate() {
 
     var dmg2 = damage - df
     var dmg3 = dmg2 - (dmg2 * dfp / 100)
+    dmg3 = Math.max(dmg3, 0)
+
+    var ehpDmg2 = 1 - df
+    var ehpDmg3 = ehpDmg2 - (ehpDmg2 * dfp / 100)
+    ehpDmg3 = Math.max(ehpDmg3, 0)
 
     var hits = Infinity
     var ehp = Infinity
 
     if (damage > 0 && hp > 0 && dmg3 > 0) {
         hits = Math.ceil(hp / dmg3)
-        ehp = hp * damage / dmg3
+    }
+
+    if (hp > 0 && ehpDmg3 > 0) {
+        ehp = hp / ehpDmg3
     }
 
     document.getElementById("output").innerHTML =

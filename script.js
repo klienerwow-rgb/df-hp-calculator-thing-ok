@@ -5,7 +5,7 @@ function calculate() {
     var damage = Number(document.getElementById("damage").value)
 
     var multiplier = 1 - dfp / 100
-    var taken = (damage + df) * multiplier
+    var taken = (damage - df) * multiplier
 
     var hits = Infinity
     var ehp = Infinity

@@ -1,17 +1,20 @@
-```javascript
-const hpInput = document.getElementById("hp")
-const dfInput = document.getElementById("df")
-const dfPercentInput = document.getElementById("dfPercent")
-const damageInput = document.getElementById("damage")
+const hp = document.getElementById("hp")
+const df = document.getElementById("df")
+const dfpercent = document.getElementById("dfpercent")
+const damage = document.getElementById("damage")
 
-const finalDamageOutput = document.getElementById("finalDamage")
-const damageMultiplierOutput = document.getElementById("damageMultiplier")
-const hitsToKillOutput = document.getElementById("hitsToKill")
-const effectiveHpOutput = document.getElementById("effectiveHp")
+const finaldamage = document.getElementById("finaldamage")
+const multiplier = document.getElementById("multiplier")
+const hits = document.getElementById("hits")
+const ehp = document.getElementById("ehp")
 
-function formatNumber(value) {
+function number(value) {
+    return Number(value) || 0
+}
+
+function format(value) {
     if (!Number.isFinite(value)) {
-        return value > 0 ? "∞" : "-∞"
+        return "∞"
     }
 
     return value.toLocaleString("en-US", {
@@ -20,44 +23,31 @@ function formatNumber(value) {
 }
 
 function calculate() {
-    const hp = Number(hpInput.value)
-    const df = Number(dfInput.value)
-    const dfPercent = Number(dfPercentInput.value)
-    const damage = Number(damageInput.value)
+    const health = number(hp.value)
+    const flat = number(df.value)
+    const percent = number(dfpercent.value)
+    const incoming = number(damage.value)
 
-    if (![hp, df, dfPercent, damage].every(Number.isFinite)) {
-        return
+    const damageMultiplier = 1 - percent / 100
+    const taken = (incoming - flat) * damageMultiplier
+
+    let killHits = Infinity
+    let effective = Infinity
+
+    if (taken > 0 && health > 0 && incoming > 0) {
+        killHits = Math.ceil(health / taken)
+        effective = health * (incoming / taken)
     }
 
-    const damageMultiplier = 1 - dfPercent / 100
-    const finalDamage = (damage - df) * damageMultiplier
-
-    let hitsToKill = 0
-    let effectiveHp = 0
-
-    if (finalDamage > 0 && hp > 0) {
-        hitsToKill = Math.ceil(hp / finalDamage)
-        effectiveHp = hp / (finalDamage / damage)
-    } else if (finalDamage === 0) {
-        hitsToKill = Infinity
-        effectiveHp = Infinity
-    } else {
-        hitsToKill = Infinity
-        effectiveHp = Infinity
-    }
-
-    finalDamageOutput.textContent = formatNumber(finalDamage)
-    damageMultiplierOutput.textContent = formatNumber(damageMultiplier) + "x"
-    hitsToKillOutput.textContent = formatNumber(hitsToKill)
-    effectiveHpOutput.textContent = formatNumber(effectiveHp)
+    finaldamage.textContent = format(taken)
+    multiplier.textContent = format(damageMultiplier) + "x"
+    hits.textContent = format(killHits)
+    ehp.textContent = format(effective)
 }
 
-document.getElementById("calculate").addEventListener("click", calculate)
-
-hpInput.addEventListener("input", calculate)
-dfInput.addEventListener("input", calculate)
-dfPercentInput.addEventListener("input", calculate)
-damageInput.addEventListener("input", calculate)
+hp.addEventListener("input", calculate)
+df.addEventListener("input", calculate)
+dfpercent.addEventListener("input", calculate)
+damage.addEventListener("input", calculate)
 
 calculate()
-```

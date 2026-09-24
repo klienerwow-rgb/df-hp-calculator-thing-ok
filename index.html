@@ -1,62 +1,37 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defence Calculator</title>
+    <title>DF Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container">
-        <h1>Defence Calculator</h1>
-        <p class="description">Calculate effective HP using HP, flat DF, DF%, and incoming damage.</p>
+    <h1>DF Calculator</h1>
 
-        <section class="calculator">
-            <label for="hp">HP</label>
-            <input id="hp" type="number" step="any" value="1000">
+    <div class="inputs">
+        <label>HP</label>
+        <input id="hp" type="number" value="1000">
 
-            <label for="df">DF</label>
-            <input id="df" type="number" step="any" value="0">
+        <label>DF</label>
+        <input id="df" type="number" value="0">
 
-            <label for="dfPercent">DF%</label>
-            <input id="dfPercent" type="number" step="any" value="0">
+        <label>DF%</label>
+        <input id="dfpercent" type="number" value="0">
 
-            <label for="damage">Incoming Damage</label>
-            <input id="damage" type="number" step="any" value="100">
+        <label>Incoming Damage</label>
+        <input id="damage" type="number" value="100">
+    </div>
 
-            <button id="calculate">Calculate</button>
-        </section>
+    <div class="results">
+        <p>Damage Taken: <span id="finaldamage">0</span></p>
+        <p>Damage Multiplier: <span id="multiplier">1x</span></p>
+        <p>Hits To Kill: <span id="hits">0</span></p>
+        <p>Effective HP: <span id="ehp">0</span></p>
+    </div>
 
-        <section class="results">
-            <div>
-                <span>Final Damage</span>
-                <strong id="finalDamage">0</strong>
-            </div>
-
-            <div>
-                <span>Damage Multiplier</span>
-                <strong id="damageMultiplier">0x</strong>
-            </div>
-
-            <div>
-                <span>Hits to Kill</span>
-                <strong id="hitsToKill">0</strong>
-            </div>
-
-            <div>
-                <span>Effective HP</span>
-                <strong id="effectiveHp">0</strong>
-            </div>
-        </section>
-
-        <section class="formula">
-            <h2>Formula</h2>
-            <p>Final Damage = (Raw Damage - DF) × (1 - DF% / 100)</p>
-        </section>
-    </main>
+    <p class="formula">
+        Damage = (Incoming Damage - DF) × (1 - DF% / 100)
+    </p>
 
     <script src="script.js"></script>
 </body>
 </html>
-```

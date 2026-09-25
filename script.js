@@ -8,9 +8,7 @@ function calculate() {
     var dmg3 = dmg2 - (dmg2 * dfp / 100)
     dmg3 = Math.max(dmg3, 0)
 
-    var ehpDmg2 = 1 - df
-    var ehpDmg3 = ehpDmg2 - (ehpDmg2 * dfp / 100)
-    ehpDmg3 = Math.max(ehpDmg3, 0)
+    var ehpDamageMultiplier = 1 - dfp / 100
 
     var hits = Infinity
     var ehp = Infinity
@@ -19,8 +17,8 @@ function calculate() {
         hits = Math.ceil(hp / dmg3)
     }
 
-    if (hp > 0 && ehpDmg3 > 0) {
-        ehp = hp / ehpDmg3
+    if (hp > 0 && ehpDamageMultiplier > 0) {
+        ehp = hp / ehpDamageMultiplier
     }
 
     document.getElementById("output").innerHTML =
